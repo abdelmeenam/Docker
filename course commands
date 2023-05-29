@@ -1,0 +1,26 @@
+
+================
+Node intilization
+================
+mkdir node-app
+cd node-app
+code .
+npm init
+npm i express
+node index.js
+live serve extion   : npm i nodemon --save-dev
+npm run start       :  node index.js 
+npm run start-dev   :  nodemon index.js
+
+
+======
+Docker
+======
+build dokcer file and name the image        : docker build -t express-node-app .
+get all images                              : docker image ls
+
+run continer with new name                  :  docker run --name express-node-app-conatiner express-node-app  
+port forward without showing extra terminal : docker run --name express-node-app-conatiner -d -p 3000:3000 express-node-app  
+
+delete container                            : docker rm express-node-app-conatiner -f
+show all containers                         : docker ps
