@@ -2,12 +2,12 @@ const express = require('express');
 
 // init app
 const app = express();
-const PORT = 2000;
+const PORT = 3000;
 
 
 // init routes
 app.get('/', (req, res) => {
-    res.send('<h1>Hello World from </h1>');
+    res.send('<h1>Hello World from synch</h1>');
 });
 // init server
 

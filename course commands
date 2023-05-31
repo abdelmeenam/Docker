@@ -11,16 +11,29 @@ node index.js
 live serve extion   : npm i nodemon --save-dev
 npm run start       :  node index.js 
 npm run start-dev   :  nodemon index.js
-
-
+----------------------------------------------------------------------------------------------------------------------------------------------
 ======
 Docker
 ======
-build dokcer file and name the image        : docker build -t express-node-app .
-get all images                              : docker image ls
+build dokcer file and name the image        : docker build -t node-image .
+show all images                             : docker image ls
+delete images                               : docker rmi image1 image2 image3
 
-run continer with new name                  :  docker run --name express-node-app-conatiner express-node-app  
-port forward without showing extra terminal : docker run --name express-node-app-conatiner -d -p 3000:3000 express-node-app  
+run continer with new name                  : docker run --name express-node-app-conatiner express-node-app  
+port forward without showing extra terminal : docker run --name node-conatiner -d -p 3000:3000 node-image  
+Sync local file with docker (Hot reload)    : docker run --name node-conatiner -v /home/pc/abdelmonem/docker/node-app:/app  -d -p 3000:3000 node-image  
 
-delete container                            : docker rm express-node-app-conatiner -f
 show all containers                         : docker ps
+delete container                            : docker rm node-conatiner -f
+Interactive terminal inside container       : docker exec -it container_name bash
+Ignore files                                : .dockerignore
+View logs                                   : docker logs container-name
+----------------------------------------------------------------------------------------------------------------------------------------------
+=====
+Steps
+=====
+1- Docker file has some  instructions 
+2- We Build docker file to get the Template of layers(Image)
+3- We Run this image to get our conatiner (actual running service)
+
+
