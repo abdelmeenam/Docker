@@ -6,7 +6,7 @@ mkdir node-app
 cd node-app
 code .
 npm init
-npm i express
+npm install express
 node index.js
 live serve extion   : npm i nodemon --save-dev
 npm run start       :  node index.js 
@@ -18,10 +18,26 @@ Docker
 build dokcer file and name the image        : docker build -t node-image .
 show all images                             : docker image ls
 delete images                               : docker rmi image1 image2 image3
-
 run continer with new name                  : docker run --name express-node-app-conatiner express-node-app  
-port forward without showing extra terminal : docker run --name node-conatiner -d -p 3000:3000 node-image  
-Sync local file with docker (Hot reload)    : docker run --name node-conatiner -v /home/pc/abdelmonem/docker/node-app:/app  -d -p 3000:3000 node-image  
+port forward without  extra terminal        : docker run --name node-conatiner -d -p 3000:3000 node-image  
+
+Sync:-
+    1- Host-mounted volumes(store data into memory) :
+        - Mount a directory from the host machine into the container (Hot reload) :
+        docker run --name node-conatiner -v /home/pc/abdelmonem/docker/node-app:/app  -d -p 3000:3000 node-image  
+
+        - one way bind   : the container can only read from the volume but cannot write or modify it
+        docker run --name node-conatiner -v $(pwd):/app:ro  -d -p 3000:3000 node-image  
+
+    2- Anonymous volumes : Store data that doesn't need to be shared between containers.(store data inside hard disk such as DB)
+        docker run -v /var/lib/mysql image_name
+        docker run --name node-conatiner -v $(pwd):/app:ro -v /app/node_modules -d -p 3000:3000 node-image     //restore(back up)
+        docker run --name node-conatiner -v $(pwd)/src:/app/src:ro  -d -p 3000:3000 node-image                 //best solution
+
+    3- Named Vloumes     : Share data between containers or provide a more descriptive name for the volume.
+        docker volume create my-vol
+        docker run --name node-conatiner -v my-vol:/app:ro  -d -p 3000:3000 node-image
+
 
 show all containers                         : docker ps
 delete container                            : docker rm node-conatiner -f
