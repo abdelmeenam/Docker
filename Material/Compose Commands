@@ -1,0 +1,5 @@
+Docker Composer : additional utility to manage conatiners  
+========================================================
+Help                    : docker-compose --help
+build image + container : docker-compose up -d 
+close container         : docker-compose down

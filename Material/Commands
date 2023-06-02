@@ -22,9 +22,11 @@ run continer with new name                  : docker run --name express-node-app
 port forward without  extra terminal        : docker run --name node-conatiner -d -p 3000:3000 node-image  
 
 Sync:-
+
+    Bind-Mounting : sharing files between host machine and docker container
     1- Host-mounted volumes(store data into memory) :
         - Mount a directory from the host machine into the container (Hot reload) :
-        docker run --name node-conatiner -v /home/pc/abdelmonem/docker/node-app:/app  -d -p 3000:3000 node-image  
+        docker run --name node-conatiner -v $(pwd):/app  -d -p 3000:3000 node-image  
 
         - one way bind   : the container can only read from the volume but cannot write or modify it
         docker run --name node-conatiner -v $(pwd):/app:ro  -d -p 3000:3000 node-image  
@@ -33,13 +35,14 @@ Sync:-
         docker run -v /var/lib/mysql image_name
         docker run --name node-conatiner -v $(pwd):/app:ro -v /app/node_modules -d -p 3000:3000 node-image     //restore(back up)
         docker run --name node-conatiner -v $(pwd)/src:/app/src:ro  -d -p 3000:3000 node-image                 //best solution
-
+        
     3- Named Vloumes     : Share data between containers or provide a more descriptive name for the volume.
         docker volume create my-vol
         docker run --name node-conatiner -v my-vol:/app:ro  -d -p 3000:3000 node-image
 
 
 show all containers                         : docker ps
+show all volumes                            : docker vollume ls
 delete container                            : docker rm node-conatiner -f
 Interactive terminal inside container       : docker exec -it container_name bash
 Ignore files                                : .dockerignore
