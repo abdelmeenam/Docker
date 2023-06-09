@@ -1,0 +1,21 @@
+// There are several methods for passing variables to a container, some of the most common methods are:
+
+
+1- Dockerfile using the ENV instruction.
+    ENV PORT = 3000
+    EXPOSE $PORT
+
+3- Command Line Arguments:
+    docker run --name node-conatiner -v $(pwd)/src:/app/src:ro --env PORT=3000 --env NODE_ENV=development -d node-image               
+    docker run --name node-conatiner -v $(pwd)/src:/app/src:ro --env-file ./.env -d node-image               
+    => to show env variables inside container : printenv
+
+3- Docker Compose:
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - DB_HOST=13579
+    or
+    env_file:
+      - .env
+      

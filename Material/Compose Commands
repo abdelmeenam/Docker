@@ -5,3 +5,5 @@ build image + container : docker-compose up -d
 close container         : docker-compose down
 Running Container       : docker-compose ps
 Show Container          : docker-compose images
+Delete image            : docker rmi id
+Delete container        : docker rm id
